@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
+/* Palette — same as louirecio-portfolio */
+:root {
+  --primary: #FF7E3B;
+  --bg-light: #FAF9F6;
+  --text-light: #1A1A1A;
+  --bg-dark: #1A1A1A;
+  --text-dark: #FAF9F6;
+  --accent-light: #E5E5E5;
+  --accent-dark: #333333;
+
+  /* active theme (dark by default) */
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+  --accent: var(--accent-dark);
+  --muted: #A3A3A3;
+}
+
+body.light-mode {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+  --accent: var(--accent-light);
+  --muted: #5C5C5C;
+}
+
 * {
-  background: #303446;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
-  color: #c6d0f5;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -13,6 +36,8 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 1rem;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 h3 {
@@ -20,26 +45,26 @@ h3 {
   font-size: inherit;
   padding: 0 0.5em;
   margin-bottom: 0;
-  background-color: #684eff;
-  color: #fafafa;
+  background-color: var(--primary);
+  color: #fff;
 }
 
 a {
-  color: #f2d5cf;
+  color: var(--primary);
   text-decoration: none;
 }
 
 footer {
-  color: #B5BFE2;
+  color: var(--muted);
   margin-top: auto;
 }
 
 .text-background {
-  color:#B5BFE2;
+  color: var(--muted);
 }
 
 .text-secondary {
-  color:#8CAAEE;
+  color: var(--primary);
 }
 
 .twitch:hover {
@@ -63,7 +88,7 @@ footer {
 }
 
 .github:hover {
-  color: #a6d189;
+  color: var(--text);
 }
 
 .charm:hover {
@@ -71,7 +96,7 @@ footer {
 }
 
 .cursor {
-  color: #f2d5cf;
+  color: var(--primary);
 }
 
 .output {
@@ -85,7 +110,36 @@ footer {
   animation: typing 2s steps(25), blink .5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 10px solid #f2d5cf;
+  border-right: 10px solid var(--primary);
+}
+
+/* Theme toggle — same as portfolio */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--accent);
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  background-color: var(--primary);
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.theme-toggle .material-icons {
+  font-family: 'Material Icons';
+  font-size: 24px;
 }
 
 /* animation */
@@ -100,7 +154,7 @@ footer {
   0% { width: 0; }
   100% { width: 30ch; }
 }
-    
+
 @keyframes blink {
   50% { border-color: transparent;}
 }

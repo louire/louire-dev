@@ -6,10 +6,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Monofett&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
 </head>
 <style></style>
 <body>
+    <script>
+        if ((localStorage.getItem('theme') || 'dark') === 'light') document.body.classList.add('light-mode');
+    </script>
+    <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+        <span class="material-icons" id="theme-icon">light_mode</span>
+    </button>
     <div class="typeme"><span class="text-secondary">louirecio@mybrain</span><span class="text-background">~ </span><span class="cursor">$ </span>me -h</div>
        <section class="output">
     <ul class="links">
@@ -57,7 +64,19 @@ My goal is to become a better software engineer every day. I love working with L
     </ul>
     </section>
 <footer>
-    This site was styled with the <a href="https://github.com/catppuccin" alt="catppuccin github" target="_blank">Catppuccin theme</a>
+    <a href="https://louirecio.com" target="_blank">portfolio</a>
 </footer>
+<script>
+    function syncIcon() {
+        document.getElementById('theme-icon').textContent =
+            document.body.classList.contains('light-mode') ? 'dark_mode' : 'light_mode';
+    }
+    function toggleTheme() {
+        const light = document.body.classList.toggle('light-mode');
+        localStorage.setItem('theme', light ? 'light' : 'dark');
+        syncIcon();
+    }
+    syncIcon();
+</script>
 </body>
 </html>
